@@ -1,0 +1,82 @@
+[
+  {
+    "query": "I'm a 45-year-old woman experiencing chest pain that started 2 hours ago. It's sharp and gets worse when I breathe deeply. I also feel short of breath.",
+    "demographics": {
+      "age": 45,
+      "gender": "female",
+      "medical_history": "No significant medical history"
+    }
+  },
+  {
+    "query": "My 3-year-old son has had a fever of 103°F for the past day, along with a rash on his body. He's been very fussy and not eating well.",
+    "demographics": {
+      "age": 3,
+      "gender": "male",
+      "medical_history": "Up to date on vaccinations"
+    }
+  },
+  {
+    "query": "I've been having persistent lower back pain for about 6 months now. It's worse in the morning and after sitting for long periods. I'm 52 years old.",
+    "demographics": {
+      "age": 52,
+      "gender": "not_specified",
+      "medical_history": "Office worker, sedentary lifestyle"
+    }
+  },
+  {
+    "query": "I'm feeling very depressed and anxious lately. I can't sleep, have no appetite, and feel hopeless. This has been going on for about 2 months.",
+    "demographics": {
+      "age": 28,
+      "gender": "female",
+      "medical_history": "No previous mental health treatment"
+    }
+  },
+  {
+    "query": "I'm 67 years old and have been experiencing dizziness and lightheadedness when I stand up. I also feel my heart racing sometimes.",
+    "demographics": {
+      "age": 67,
+      "gender": "male",
+      "medical_history": "Hypertension, diabetes"
+    }
+  },
+  {
+    "query": "I have a persistent cough that's been going on for 3 weeks. It's mostly dry but sometimes I cough up yellow mucus. I'm a smoker.",
+    "demographics": {
+      "age": 55,
+      "gender": "male",
+      "medical_history": "20-year smoking history, 1 pack per day"
+    }
+  },
+  {
+    "query": "My 16-year-old daughter has been having severe headaches almost daily for the past month. They seem to be triggered by stress and lack of sleep.",
+    "demographics": {
+      "age": 16,
+      "gender": "female",
+      "medical_history": "High school student, high academic stress"
+    }
+  },
+  {
+    "query": "I'm 8 months pregnant and have been experiencing severe nausea and vomiting that won't stop. I can't keep any food or water down.",
+    "demographics": {
+      "age": 29,
+      "gender": "female",
+      "medical_history": "8 months pregnant, first pregnancy"
+    }
+  },
+  {
+    "query": "I cut my hand while cooking and it's bleeding quite a bit. The cut is about 2 inches long and fairly deep. Should I go to the emergency room?",
+    "demographics": {
+      "age": 34,
+      "gender": "not_specified",
+      "medical_history": "No significant medical history"
+    }
+  },
+  {
+    "query": "I've been having trouble with my vision lately. Things seem blurry and I'm seeing halos around lights. I'm diabetic.",
+    "demographics": {
+      "age": 58,
+      "gender": "female",
+      "medical_history": "Type 2 diabetes for 10 years, hypertension"
+    }
+  }
+]

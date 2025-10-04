@@ -1,0 +1,49 @@
+============================================================
+PHENOML HEALTHCARE QUERY PROCESSING TEST REPORT
+============================================================
+
+SUMMARY:
+Total Tests: 5
+Passed: 1
+Failed: 4
+Success Rate: 20.00%
+Started: 2025-10-04T17:50:51.470181
+Completed: 2025-10-04T17:50:51.471149
+
+DETAILED RESULTS:
+----------------------------------------
+Scenario 1: PASS
+Query: I'm a 28-year-old male and I've been having severe chest pain for the last 3 hou...
+Quality Score: 0.99
+
+Scenario 2: FAIL
+Query: Hi, I'm a 35-year-old woman and I've been having a persistent cough for about 2 ...
+Quality Score: 0.99
+Issues:
+  - Priority mismatch: got emergency, expected routine
+  - Appointment type mismatch: got emergency, expected primary_care
+  - Severity mismatch: got emergency, expected low
+
+Scenario 3: FAIL
+Query: I'm 67 years old, female, and I've been having increasing shortness of breath ov...
+Quality Score: 0.99
+Issues:
+  - Priority mismatch: got emergency, expected semi_urgent
+  - Appointment type mismatch: got emergency, expected primary_care
+  - Severity mismatch: got emergency, expected moderate
+
+Scenario 4: FAIL
+Query: I'm a 22-year-old college student and I've been feeling really anxious and stres...
+Quality Score: 0.99
+Issues:
+  - Priority mismatch: got emergency, expected semi_urgent
+  - Appointment type mismatch: got emergency, expected mental_health
+  - Severity mismatch: got emergency, expected moderate
+
+Scenario 5: FAIL
+Query: My 8-year-old daughter has had a fever of 102°F for 2 days, along with a sore th...
+Quality Score: 0.99
+Issues:
+  - Priority mismatch: got emergency, expected urgent
+  - Appointment type mismatch: got emergency, expected urgent_care
+  - Severity mismatch: got emergency, expected moderate

@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Healthcare Appointment Booking Schema",
+  "description": "JSON schema for structured appointment booking data compatible with FHIR standards",
+  "type": "object",
+  "required": [
+    "patient_info",
+    "symptoms_assessment",
+    "appointment_request",
+    "clinical_guidelines",
+    "priority_level"
+  ],
+  "properties": {
+    "patient_info": {
+      "type": "object",
+      "required": ["age_range", "gender"],
+      "properties": {
+        "age_range": {
+          "type": "string",
+          "enum": ["0-17", "18-35", "36-50", "51-65", "65+"],
+          "description": "Patient age range for appropriate care routing"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "other", "not_specified"],
+          "description": "Patient gender for relevant care considerations"
+        },
+        "pregnancy_status": {
+          "type": "string",
+          "enum": ["pregnant", "not_pregnant", "unknown", "not_applicable"],
+          "description": "Pregnancy status if relevant to symptoms"
+        },
+        "chronic_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Known chronic conditions mentioned in query"
+        }
+      }
+    },
+    "symptoms_assessment": {
+      "type": "object",
+      "required": ["primary_symptoms", "severity", "duration"],
+      "properties": {
+        "primary_symptoms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["symptom", "body_system"],
+            "properties": {
+              "symptom": {
+                "type": "string",
+                "description": "Standardized symptom description"
+              },
+              "body_system": {
+                "type": "string",
+                "enum": [
+                  "cardiovascular",
+                  "respiratory",
+                  "gastrointestinal",
+                  "neurological",
+                  "musculoskeletal",
+                  "dermatological",
+                  "genitourinary",
+                  "endocrine",
+                  "psychiatric",
+                  "ophthalmologic",
+                  "otolaryngologic",
+                  "hematologic",
+                  "immunologic",
+                  "general"
+                ],
+                "description": "Primary body system affected"
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["mild", "moderate", "severe"],
+                "description": "Symptom severity assessment"
+              }
+            }
+          },
+          "description": "List of primary symptoms identified"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["low", "moderate", "high", "emergency"],
+          "description": "Overall severity assessment"
+        },
+        "duration": {
+          "type": "string",
+          "enum": ["acute", "subacute", "chronic"],
+          "description": "Duration classification: acute (<1 week), subacute (1-4 weeks), chronic (>4 weeks)"
+        },
+        "onset": {
+          "type": "string",
+          "enum": ["sudden", "gradual", "unknown"],
+          "description": "Symptom onset pattern"
+        },
+        "red_flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Warning signs requiring immediate attention"
+        }
+      }
+    },
+    "appointment_request": {
+      "type": "object",
+      "required": ["appointment_type", "urgency", "preferred_timeframe"],
+      "properties": {
+        "appointment_type": {
+          "type": "string",
+          "enum": [
+            "primary_care",
+            "urgent_care",
+            "emergency",
+            "specialist_referral",
+            "telemedicine",
+            "mental_health",
+            "preventive_care"
+          ],
+          "description": "Type of appointment recommended"
+        },
+        "specialty_required": {
+          "type": "string",
+          "enum": [
+            "cardiology",
+            "pulmonology",
+            "gastroenterology",
+            "neurology",
+            "orthopedics",
+            "dermatology",
+            "urology",
+            "endocrinology",
+            "psychiatry",
+            "ophthalmology",
+            "otolaryngology",
+            "hematology",
+            "oncology",
+            "rheumatology",
+            "infectious_disease",
+            "general_surgery",
+            "none"
+          ],
+          "description": "Medical specialty if specialist referral needed"
+        },
+        "urgency": {
+          "type": "string",
+          "enum": ["immediate", "within_24h", "within_week", "within_month", "routine"],
+          "description": "Recommended timeframe for appointment"
+        },
+        "preferred_timeframe": {
+          "type": "string",
+          "description": "Patient's preferred appointment timeframe if mentioned"
+        },
+        "appointment_reason": {
+          "type": "string",
+          "description": "Concise reason for appointment booking"
+        }
+      }
+    },
+    "clinical_guidelines": {
+      "type": "object",
+      "required": ["applicable_guidelines", "recommendations"],
+      "properties": {
+        "applicable_guidelines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["guideline_name", "organization"],
+            "properties": {
+              "guideline_name": {
+                "type": "string",
+                "description": "Name of the clinical guideline"
+              },
+              "organization": {
+                "type": "string",
+                "description": "Organization that published the guideline"
+              },
+              "relevance": {
+                "type": "string",
+                "enum": ["primary", "secondary", "supportive"],
+                "description": "Relevance level to the case"
+              }
+            }
+          },
+          "description": "Relevant clinical guidelines identified"
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Key recommendations from guidelines"
+        },
+        "contraindications": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Important contraindications or warnings"
+        }
+      }
+    },
+    "priority_level": {
+      "type": "string",
+      "enum": ["emergency", "urgent", "semi_urgent", "routine"],
+      "description": "Overall priority level for appointment scheduling"
+    },
+    "additional_notes": {
+      "type": "object",
+      "properties": {
+        "patient_concerns": {
+          "type": "string",
+          "description": "Specific patient concerns or questions mentioned"
+        },
+        "follow_up_needed": {
+          "type": "boolean",
+          "description": "Whether follow-up appointments may be needed"
+        },
+        "diagnostic_tests_suggested": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Diagnostic tests that may be recommended"
+        },
+        "lifestyle_factors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Relevant lifestyle factors mentioned"
+        }
+      }
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "AI confidence score in the assessment (0-1)"
+    }
+  }
+}

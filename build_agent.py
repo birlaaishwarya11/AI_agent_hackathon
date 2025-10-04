@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[15]:
-
-
 import sys
 import os
 from phenoml import Client
@@ -202,6 +196,7 @@ def create_patient_support_agent():
       provider="medplum"
   )
   return response.data.id
+
 if __name__ == '__main__':
     agent_id = create_patient_support_agent()
     print("Agent_ID", agent_id)

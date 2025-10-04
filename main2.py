@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 import subprocess
 from request import build_agent
+import uvicorn
 app = FastAPI()
 
 @app.post("/run-script")
@@ -17,6 +18,7 @@ async def run_script():
         return {"agent_id":result}
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail={"stdout": e.stdout, "stderr": e.stderr})
-
+if  __name__ == "__main__":
+    uvicorn.run(app,host="0.0.0.0", port=8000)
 # To run this FastAPI app, save this to main.py and use:
 # uvicorn main:app --reload

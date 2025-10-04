@@ -1,75 +1,32 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import sys
-import os
-from phenoml import Client
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from typing import Optional, List
-import uvicorn
+def build_agent():
+    import sys
+    import os
+    from phenoml import Client
 
-from dotenv import load_dotenv
+    from dotenv import load_dotenv
 
-load_dotenv()
+    load_dotenv()
 
-USERNAME = os.getenv("PHENOML_USERNAME")
-PASSWORD = os.getenv("PHENOML_PASSWORD")
-BASE_URL = os.getenv("PHENOML_BASE_URL")
+    USERNAME = os.getenv("PHENOML_USERNAME")
+    PASSWORD = os.getenv("PHENOML_PASSWORD")
+    BASE_URL = os.getenv("PHENOML_BASE_URL")
 
-print("PHENOML_USERNAME:", USERNAME)
+    print(USERNAME)
 
-# Initialize client only if credentials are available
-client = None
-if USERNAME and PASSWORD and BASE_URL:
     client = Client(
         username=USERNAME,
         password=PASSWORD,
         base_url=BASE_URL,
     )
-    print("PhenomL client initialized successfully")
-else:
-    print("PhenomL credentials not found - running in demo mode")
-
-# FastAPI app initialization
-app = FastAPI(
-    title="Patient Support Program Agent Builder",
-    description="API for creating and managing patient support program agents",
-    version="1.0.0"
-)
-
-# Pydantic models for request/response
-class PromptCreateRequest(BaseModel):
-    name: str
-    content: str
-    is_active: bool = True
-    description: str
-
-class AgentCreateRequest(BaseModel):
-    name: str
-    prompts: List[str]
-    is_active: bool = True
-    provider: str = "medplum"
-
-class PromptResponse(BaseModel):
-    id: str
-    name: str
-    content: str
-    is_active: bool
-    description: str
-
-class AgentResponse(BaseModel):
-    id: str
-    name: str
-    prompts: List[str]
-    is_active: bool
-    provider: str
 
 
-# In[7]:
+    # In[7]:
 
 
-default_fhir_prompt = """Y
+    default_fhir_prompt = """Y
 You are a clinical AI assistant specialized in healthcare query analysis and appointment scheduling. Your role is to process patient queries, assess symptoms using clinical guidelines, and generate structured data for appointment booking.
 
 ## CORE RESPONSIBILITIES:
@@ -229,128 +186,27 @@ Now process the following patient query and provide the structured JSON output:
 
 Analyze this query thoroughly and provide your structured JSON response following the exact format specified above."""
 
-# FastAPI Endpoints
-
-@app.get("/")
-async def root():
-    """Root endpoint with API information"""
-    return {
-        "message": "Patient Support Program Agent Builder API",
-        "version": "1.0.0",
-        "endpoints": {
-            "create_prompt": "/prompts",
-            "create_agent": "/agents",
-            "create_default_agent": "/agents/default"
-        }
-    }
-
-@app.post("/prompts", response_model=PromptResponse)
-async def create_prompt(request: PromptCreateRequest):
-    """Create a new prompt"""
-    if not client:
-        raise HTTPException(status_code=503, detail="PhenomL client not available - credentials not configured")
-    
-    try:
-        prompt = client.agent.prompts.create(
-            name=request.name,
-            content=request.content,
-            is_active=request.is_active,
-            description=request.description
-        )
-        return PromptResponse(
-            id=prompt.data.id,
-            name=prompt.data.name,
-            content=prompt.data.content,
-            is_active=prompt.data.is_active,
-            description=prompt.data.description
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to create prompt: {str(e)}")
-
-@app.post("/agents", response_model=AgentResponse)
-async def create_agent(request: AgentCreateRequest):
-    """Create a new agent"""
-    if not client:
-        raise HTTPException(status_code=503, detail="PhenomL client not available - credentials not configured")
-    
-    try:
-        agent = client.agent.create(
-            name=request.name,
-            prompts=request.prompts,
-            is_active=request.is_active,
-            provider=request.provider
-        )
-        return AgentResponse(
-            id=agent.data.id,
-            name=agent.data.name,
-            prompts=agent.data.prompts,
-            is_active=agent.data.is_active,
-            provider=agent.data.provider
-        )
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to create agent: {str(e)}")
-
-@app.post("/agents/default")
-async def create_default_agent():
-    """Create the default Patient Support Program Agent with the default FHIR prompt"""
-    if not client:
-        raise HTTPException(status_code=503, detail="PhenomL client not available - credentials not configured")
-    
-    try:
-        # Create the default FHIR prompt
-        default_fhir_prompt_ = client.agent.prompts.create(
-            name="default_fhir_prompt",
-            content=default_fhir_prompt,
-            is_active=True,
-            description="General prompt for guiding FHIR tool usage"
-        )
-        
-        # Create the patient support program agent
-        agent = client.agent.create(
-            name="Patient Support Program Agent",
-            prompts=[default_fhir_prompt_.data.id],
-            is_active=True,
-            provider="medplum"
-        )
-        
-        return {
-            "message": "Default agent created successfully",
-            "prompt": {
-                "id": default_fhir_prompt_.data.id,
-                "name": default_fhir_prompt_.data.name
-            },
-            "agent": {
-                "id": agent.data.id,
-                "name": agent.data.name
-            }
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to create default agent: {str(e)}")
-
-# Original logic preserved as functions for backward compatibility
-def create_default_fhir_prompt():
-    """Original function to create default FHIR prompt"""
-    if not client:
-        raise ValueError("PhenomL client not available - credentials not configured")
-    return client.agent.prompts.create(
+    default_fhir_prompt_=client.agent.prompts.create(
         name="default_fhir_prompt",
         content=default_fhir_prompt,
         is_active=True,
         description="General prompt for guiding FHIR tool usage"
     )
 
-def create_patient_support_agent():
-    """Original function to create patient support program agent"""
-    if not client:
-        raise ValueError("PhenomL client not available - credentials not configured")
-    default_fhir_prompt_ = create_default_fhir_prompt()
-    return client.agent.create(
+
+    # In[9]:
+
+
+    # patient support program agent
+
+    response=client.agent.create(
         name="Patient Support Program Agent",
         prompts=[default_fhir_prompt_.data.id],
         is_active=True,
         provider="medplum"
     )
 
-# Run the app
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+    print("Agent_ID",response.data.id )
+    
+    return response.data.id

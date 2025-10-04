@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from main import FastAPI, HTTPException
 import subprocess
 
 app = FastAPI()

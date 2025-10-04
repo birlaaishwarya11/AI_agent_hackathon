@@ -4,3 +4,4 @@ torch
 gtts
 python-decouple
 groq
+fpdf

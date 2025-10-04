@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 import subprocess
 import uvicorn
 
-app = FastAPI()
+app = FastAPI(root_path="/danai-8000")
 
 @app.post("/run-script")
 async def run_script():

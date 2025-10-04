@@ -201,13 +201,15 @@ default_fhir_prompt_=client.agent.prompts.create(
 
 # patient support program agent
 
-client.agent.create(
+response=client.agent.create(
     name="Patient Support Program Agent",
     prompts=[default_fhir_prompt_.data.id],
     is_active=True,
     provider="medplum"
 )
 
+
+print("Agent_ID",response.data.id )
 
 # In[ ]:
 

@@ -1,0 +1,6 @@
+streamlit
+whisper
+torch
+gtts
+python-decouple
+groq

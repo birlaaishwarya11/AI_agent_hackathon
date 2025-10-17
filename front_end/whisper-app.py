@@ -1,3 +1,4 @@
+import requests
 import streamlit as st
 import whisper
 import tempfile
@@ -319,9 +320,13 @@ if audio_file is not None:
             st.success("✅ Transcription completed successfully! Ready for medical documentation.")
             
             # Action buttons
-            col1, col2, col3 = st.columns(3)
+            col1, col2, col3, col4 = st.columns(4)
             
             with col1:
+                if st.button("🤖 Send to Agent", use_container_width=True):
+                    st.session_state.send_to_agent = True
+                        
+            with col2:
                 # Generate PDF
                 pdf_bytes = generate_pdf(
                     st.session_state.current_transcription,
@@ -338,21 +343,44 @@ if audio_file is not None:
                     use_container_width=True
                 )
             
-            with col2:
-                if st.button("📋 Copy Text", use_container_width=True):
-                    copy_text = f"Original: {st.session_state.current_transcription}"
-                    if st.session_state.current_translation != st.session_state.current_transcription:
-                        copy_text += f"\n\nTranslation: {st.session_state.current_translation}"
-                    st.code(copy_text, language=None)
-                    st.info("💡 Text displayed above - copy from the box")
-            
             with col3:
+                if st.button("📋 Copy Text", use_container_width=True):
+                    st.session_state.show_copy_text = True
+            
+            with col4:
                 if st.button("🔄 New Recording", use_container_width=True):
                     st.session_state.current_transcription = None
                     st.session_state.current_translation = None
                     st.session_state.current_language = None
                     st.session_state.timestamp = None
                     st.rerun()
+            
+            # Render the code box below all four buttons, full width
+            if st.session_state.get("show_copy_text", False):
+                # copy_text = f"Original: {st.session_state.current_transcription}"
+                # if st.session_state.current_translation != st.session_state.current_transcription:
+                copy_text = f"Translation: {st.session_state.current_translation}"
+                st.code(copy_text, language=None)
+                st.info("💡 Text displayed above - copy from the box")
+            
+            if st.session_state.get("send_to_agent", False):
+                agent_api_url = "http://127.0.0.1:8000/chat"  # Replace with actual endpoint
+
+                # Use the English translation if available, else original transcription
+                payload_text = st.session_state.get("current_translation") or st.session_state.get("current_transcription")
+                payload = { "message": payload_text, "session_id": ""}
+
+                try:
+                    response = requests.post(agent_api_url, json=payload, timeout=30)
+                    response.raise_for_status()
+                    result = response.json()
+                    agent_output = result.get("output", result)
+                    st.markdown("**🤖 Agent Response:**")
+                    st.markdown(f"<div style='padding: 0.5rem 0; font-size: 1.05rem; line-height: 1.7;'>{agent_output}</div>", unsafe_allow_html=True)
+                except Exception as e:
+                    st.error(f"Agent API call failed: {e}")
+
+            
 
         except Exception as e:
             st.error(f"❌ Transcription error: {e}")

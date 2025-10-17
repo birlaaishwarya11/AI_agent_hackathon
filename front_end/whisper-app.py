@@ -15,6 +15,9 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+if 'session_id' not in st.session_state:
+    st.session_state.session_id = None
+
 # Load external CSS file
 def load_css(file_path):
     """Load CSS from external file"""
@@ -368,7 +371,7 @@ if audio_file is not None:
 
                 # Use the English translation if available, else original transcription
                 payload_text = st.session_state.get("current_translation") or st.session_state.get("current_transcription")
-                payload = { "message": payload_text, "session_id": ""}
+                payload = { "message": payload_text, "session_id": st.session_state.session_id }
 
                 try:
                     response = requests.post(agent_api_url, json=payload, timeout=30)
@@ -376,7 +379,45 @@ if audio_file is not None:
                     result = response.json()
                     agent_output = result.get("output", result)
                     st.markdown("**🤖 Agent Response:**")
-                    st.markdown(f"<div style='padding: 0.5rem 0; font-size: 1.05rem; line-height: 1.7;'>{agent_output}</div>", unsafe_allow_html=True)
+                    # st.markdown(f"<div style='padding: 0.5rem 0; font-size: 1.05rem; line-height: 1.7;'> </div>", unsafe_allow_html=True)
+                    if "session_id" in result and result["session_id"] and st.session_state.session_id is None:
+                        st.session_state.session_id = result["session_id"]
+
+                    if 'chat_history' not in st.session_state:
+                        st.session_state.chat_history = []
+
+                    # When a new interaction occurs
+                    st.session_state.chat_history.append({
+                        "role": "user",
+                        "text": st.session_state.current_transcription,
+                        "timestamp": st.session_state.timestamp,
+                        "session_id": st.session_state.session_id
+                    })
+                    if agent_output:
+                        st.session_state.chat_history.append({
+                            "role": "agent",
+                            "text": result["response"],
+                            "timestamp": datetime.now().strftime("%I:%M %p"),
+                            "session_id": st.session_state.session_id
+                        })
+
+                    # Display conversation turns
+                    for turn in st.session_state.chat_history:
+                        if turn['role'] == 'user':
+                            st.markdown(f"**Patient:** {turn['text']}")
+                        else:
+                            st.markdown(f"**Assistant:** {turn['text']}")
+
+                    # Suggest next action after agent reply
+                    if agent_output:
+                        st.info("💡 Would you like to record a follow-up or add more symptoms?")
+
+                    if st.button("Record another message", use_container_width=True):
+                        # Reset input for next message in same session
+                        st.session_state.current_transcription = None
+                        st.session_state.current_translation = None
+                        st.session_state.timestamp = None
+                        st.rerun()
                 except Exception as e:
                     st.error(f"Agent API call failed: {e}")
 

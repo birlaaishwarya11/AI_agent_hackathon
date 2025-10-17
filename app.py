@@ -60,6 +60,7 @@ app.add_middleware(
         "http://localhost:3000",  # Common React dev port
         "http://127.0.0.1:5173",
         "http://127.0.0.1:3000",
+        "http://0.0.0.0:8001",
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST"],
@@ -164,4 +165,4 @@ async def shutdown_event():
             print(f"Error closing PhenoML client: {e}")
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="127.0.0.1", port=8001, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=8001, reload=True)

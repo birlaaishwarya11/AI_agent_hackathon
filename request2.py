@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[15]:
+
+
 import sys
 import os
 from phenoml import Client
@@ -8,11 +14,20 @@ def create_patient_support_agent():
 
   load_dotenv()
 
-  USERNAME = os.getenv("PHENOML_USERNAME")
-  PASSWORD = os.getenv("PHENOML_PASSWORD")
-  BASE_URL = os.getenv("PHENOML_BASE_URL")
+  # USERNAME = os.getenv("PHENOML_USERNAME")
+  # PASSWORD = os.getenv("PHENOML_PASSWORD")
+  # BASE_URL = os.getenv("PHENOML_BASE_URL")
 
-  print(BASE_URL)
+  USERNAME = "YougOEL3yw9csYHvAE0_4Q"
+  PASSWORD = "Q3YPTVOjyhyMJef8Ofguog"
+  BASE_URL = "https://experiment.app.pheno.ml/"
+
+  print("PHENOML_USERNAME:", USERNAME)
+
+  # Initialize client only if credentials are available
+  # if not USERNAME or not PASSWORD or not BASE_URL:
+  #     print("PhenomL credentials not configured - returning demo agent ID")
+  #     return "demo-agent-id-12345"
 
   client = Client(
       username=USERNAME,
@@ -196,12 +211,6 @@ def create_patient_support_agent():
       provider="medplum"
   )
   return response.data.id
-
 if __name__ == '__main__':
     agent_id = create_patient_support_agent()
     print("Agent_ID", agent_id)
-
-
-
-
-

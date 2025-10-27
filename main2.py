@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import subprocess
-from request import build_agent
+from request2 import create_patient_support_agent
 import uvicorn
 app = FastAPI()
 
@@ -14,7 +14,7 @@ async def run_script():
         #     text=True,
         #     check=True
         # )
-        result=build_agent()
+        result=create_patient_support_agent()
         return {"agent_id":result}
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail={"stdout": e.stdout, "stderr": e.stderr})

@@ -1,0 +1,75 @@
+{
+  "demo_job_001": {
+    "job_id": "demo_job_001",
+    "overall_score": 0.742,
+    "category_scores": {
+      "technical_skills": 1.0,
+      "soft_skills": 0.0,
+      "experience": 1.0,
+      "keywords": 0.277,
+      "must_have": 1.0,
+      "nice_to_have": 0.8
+    },
+    "requirements_met": {
+      "technical_skills": [
+        "postgresql",
+        "react",
+        "javascript",
+        "aws",
+        "flask",
+        "django",
+        "sql",
+        "python",
+        "go",
+        "docker",
+        "java",
+        "kubernetes"
+      ],
+      "soft_skills": [],
+      "must_have": [
+        "postgresql",
+        "aws",
+        "docker",
+        "sql",
+        "python",
+        "react",
+        "javascript",
+        "java"
+      ],
+      "nice_to_have": [
+        "kubernetes",
+        "flask",
+        "django",
+        "go"
+      ]
+    },
+    "requirements_missing": {
+      "technical_skills": [],
+      "soft_skills": [
+        "agile"
+      ],
+      "must_have": [],
+      "nice_to_have": [
+        "agile"
+      ]
+    },
+    "detailed_analysis": {
+      "strengths": [
+        "Strong technical skill alignment",
+        "Experience level matches requirements",
+        "Meets most critical requirements"
+      ],
+      "weaknesses": [],
+      "recommendations": [],
+      "skill_gaps": [],
+      "competitive_advantages": [
+        "kubernetes",
+        "flask",
+        "django",
+        "go"
+      ]
+    },
+    "recommendation": "Recommended - Good match with minor gaps",
+    "matched_at": "2025-10-26T22:47:26.405405"
+  }
+}

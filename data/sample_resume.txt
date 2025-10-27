@@ -1,0 +1,54 @@
+John Doe
+Software Engineer
+Email: john.doe@email.com
+Phone: (555) 123-4567
+LinkedIn: linkedin.com/in/johndoe
+GitHub: github.com/johndoe
+
+PROFESSIONAL SUMMARY
+Experienced software engineer with 5 years of experience in full-stack development. 
+Proficient in Python, JavaScript, and cloud technologies. Strong background in 
+building scalable web applications and RESTful APIs.
+
+TECHNICAL SKILLS
+Programming Languages: Python, JavaScript, TypeScript, Java, SQL
+Web Technologies: React, Node.js, Express, HTML, CSS
+Databases: PostgreSQL, MongoDB, Redis
+Cloud & DevOps: AWS, Docker, Kubernetes, Jenkins, Git
+Frameworks: Django, Flask, Spring Boot
+Tools: Linux, Bash, Vim, VS Code, Jira
+
+PROFESSIONAL EXPERIENCE
+
+Senior Software Engineer - Tech Solutions Inc. (2021 - Present)
+• Led development of microservices architecture serving 1M+ users
+• Implemented CI/CD pipelines reducing deployment time by 60%
+• Mentored junior developers and conducted code reviews
+• Built RESTful APIs using Python Django and PostgreSQL
+• Deployed applications on AWS using Docker and Kubernetes
+
+Software Engineer - StartupCorp (2019 - 2021)
+• Developed full-stack web applications using React and Node.js
+• Optimized database queries improving application performance by 40%
+• Collaborated with cross-functional teams in Agile environment
+• Implemented automated testing reducing bugs by 30%
+
+EDUCATION
+Bachelor of Science in Computer Science
+University of Technology (2015 - 2019)
+GPA: 3.8/4.0
+
+PROJECTS
+E-commerce Platform
+• Built scalable e-commerce platform using Python, React, and PostgreSQL
+• Implemented payment processing and inventory management
+• Technologies: Python, React, PostgreSQL, AWS, Docker
+
+Task Management API
+• Developed RESTful API for task management with authentication
+• Implemented real-time notifications using WebSockets
+• Technologies: Node.js, Express, MongoDB, Socket.io
+
+CERTIFICATIONS
+• AWS Certified Solutions Architect - Associate (2022)
+• Certified Kubernetes Administrator (2021)

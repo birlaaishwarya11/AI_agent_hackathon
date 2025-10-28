@@ -26,13 +26,17 @@
 git clone <repository-url>
 cd linkedin-job-applier-mcp
 
-# Install dependencies
-pip install -e .
+# Quick setup (recommended)
+python setup.py
+
+# Or manual installation
+uv sync  # or pip install -e .
+cp .env.example .env
 ```
 
 ### 2. Configuration
 
-Create a `.env` file with your credentials:
+Edit the `.env` file with your credentials:
 
 ```env
 # LinkedIn Credentials
@@ -52,15 +56,40 @@ MINIMUM_MATCH_SCORE=0.7
 
 Place your resume in the `data/` directory. Supports PDF, DOCX, and TXT formats.
 
-### 4. Try the Demo
+### 4. Run the Server
 
 ```bash
-python demo.py
+# MCP Server (for Claude Desktop, ChatGPT, etc.)
+python run_local.py mcp
+
+# FastAPI Server (REST API with docs)
+python run_local.py api
+
+# Docker (containerized)
+docker-compose up
 ```
 
-This demonstrates all features with a sample resume and job description.
+### 5. Test the Setup
 
-### 5. Start the MCP Server
+```bash
+python test_fastmcp.py
+```
+
+## 🌐 Deployment Options
+
+### Local Development
+- **MCP Server**: `python run_local.py mcp`
+- **FastAPI Server**: `python run_local.py api`
+- **Docker**: `docker-compose up`
+
+### Free Cloud Deployment
+- **Railway**: `railway up` (recommended)
+- **Render**: Connect GitHub repo
+- **Fly.io**: `fly deploy`
+
+See [LOCAL_DEPLOYMENT.md](LOCAL_DEPLOYMENT.md) for detailed deployment instructions.
+
+## 🔌 MCP Integration
 
 ```bash
 linkedin-job-applier

@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: linkedin-job-applier-mcp
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    buildCommand: ""
+    startCommand: "python src/linkedin_job_applier/fastmcp_server.py"
+    healthCheckPath: /health
+    envVars:
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PORT
+        value: "10000"
+      - key: PYTHONPATH
+        value: "/app/src"
+      - key: CHROME_HEADLESS
+        value: "true"
+      - key: CHROME_NO_SANDBOX
+        value: "true"
+      - key: CHROME_DISABLE_DEV_SHM_USAGE
+        value: "true"
+      - key: LINKEDIN_EMAIL
+        sync: false
+      - key: LINKEDIN_PASSWORD
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false

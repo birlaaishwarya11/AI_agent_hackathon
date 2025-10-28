@@ -1,0 +1,43 @@
+app = "linkedin-job-applier-mcp"
+primary_region = "sjc"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  HOST = "0.0.0.0"
+  PORT = "8080"
+  PYTHONPATH = "/app/src"
+  CHROME_HEADLESS = "true"
+  CHROME_NO_SANDBOX = "true"
+  CHROME_DISABLE_DEV_SHM_USAGE = "true"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[http_service.checks]]
+  interval = "15s"
+  grace_period = "5s"
+  method = "GET"
+  path = "/health"
+  protocol = "http"
+  timeout = "10s"
+
+[vm]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 1024
+
+[[mounts]]
+  source = "data_volume"
+  destination = "/app/data"
+
+[volumes]
+  data_volume = {
+    size_gb = 1
+  }

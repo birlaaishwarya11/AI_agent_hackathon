@@ -1,5 +1,7 @@
-John Doe
-Software Engineer
+Aishwarya Birla
+New York, NY
++1 646-244-9594
+ab3347@cornell.edu
 
 EXPERIENCE:
 - 5 years of Python development
@@ -15,3 +17,54 @@ SKILLS:
 
 EDUCATION:
 - Bachelor's in Computer Science
+
+
+EDUCATION
+-   Cornell Tech, Cornell University                   
+    New York, NY
+    MEng in Computer Science                        
+    May 2026
+    Relevant Coursework: HCI and Design, Machine Learning Engineering, Deep Learning, Business Fundamentals
+
+-   SRM IST                                  
+    Chennai, India
+    BTech in Computer Science Engineering, GPA: 4.0            
+    May 2022
+
+TECHNICAL SKILLS
+- Languages: Python, Java, C++, SQL, JavaScript
+- Frameworks & Tools: TensorFlow, PyTorch, OpenAI Whisper, FastAPI, Streamlit, React, Next.js, PhenoML, Backstage framework
+- Cloud & DevOps: AWS, Azure, Docker, Kubernetes, Terraform, CI/CD (GitLab), shell scripting
+- Data Systems: PostgreSQL, MySQL, ETL pipelines, data modeling, RESTful APIs
+- Monitoring & Infrastructure: Prometheus, Grafana, Infrastructure as Code (IaC)
+- Methodologies: Agile, Test Automation, Scalable Production Systems, ML Model Deployment
+
+PROFESSIONAL EXPERIENCE
+-   ThoughtWorks, Developer Consultant, Pune, India            
+    July 2022- May 2025
+    - Collaborated with cross-functional engineering and data teams to design scalable data-driven applications using Java and the Backstage framework.
+    - Implemented CI/CD pipelines, containerized microservices, and Infrastructure as code (IaC), automation, and configuration management, establishing CI/CD pipelines to optimize deployment speed and system reliability.
+    - Developed secure API integrations leveraging data analytics workflows and monitoring solutions (Prometheus, Grafana).
+    - Delivered enterprise-level software solutions with an emphasis on scalability, data processing, and cloud resilience for three projects for one of the largest financial institutes.
+
+PROJECTS AND HACKATHON HIGHLIGHTS
+-   dan.ai – Voice-Interactive Healthcare Agent | NYC AI Agents Hackathon     
+    2025
+    - Engineered LLM-integrated agent system integrating OpenAI Whisper, FastAPI, TrueFoundry, PhenoML, and Streamlit for speech transcription, semantic data processing, and API-based automation workflows.
+    - Orchestrated cloud deployment on TrueFoundary using AWS services.
+    - Engineered LLM-integrated agent systems and workflows, API-based backend and frontend integration.
+    - Won “Best Use of PhenoML” and “Production Fit with TrueFoundry AI Gateway” awards out of 150+ participants.
+
+-   Cornell Tech Cleanup Crew | Health in Climate Hackathon            
+    2025
+    - Developed the end-to-end pipeline for wildfire health risk assessment at the county level in California, cleaning and preprocessing multiple datasets (wildfire, census, geography, health, and social vulnerability).
+    - Engineered a composite wildfire health risk score using machine learning models (XGBoost), performed machine learning model optimization and real-world risk balancing,
+    - Delivered an interactive Next.js visualization dashboard for real-time analytic insights and data visualization workflows, to access county-level health impact insights
+
+EXTRACURRICULAR ACTIVITIES /VOLUNTEER & RESEARCH PAPERS
+    - Led a team of 100+ people as Committee Head for Techno-Management fest AARUUSH.
+    - Organized multiple events with student led NGO Blooming Beacon.
+    - Contributed as a part of digital communications in international club, ROTARACT-NYF.
+    - Research papers:
+        - Developed blockchain-based smart contracts to secure and automate financial transactions for vehicle rentals, improving trust and efficiency. (Jul 2021 - Dec 2021)
+        - Compared machine learning algorithms to identify food items from images, optimizing performance and accuracy for real-world use. (Jan 2022 - May 2022)

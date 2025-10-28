@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "linkedin-job-applier": {
+      "command": "/openhands/micromamba/envs/openhands/bin/python",
+      "args": [
+        "/workspace/project/run_local.py",
+        "mcp"
+      ],
+      "env": {
+        "LINKEDIN_EMAIL": "demo@example.com",
+        "LINKEDIN_PASSWORD": "demo_password",
+        "OPENAI_API_KEY": "sk-demo-key-replace-with-real-key",
+        "ANTHROPIC_API_KEY": "demo-anthropic-key-replace-with-real-key",
+        "HOST": "127.0.0.1",
+        "PORT": "8000",
+        "DEBUG": "false",
+        "HEADLESS_BROWSER": "true",
+        "CHROME_NO_SANDBOX": "true",
+        "CHROME_DISABLE_DEV_SHM_USAGE": "true",
+        "MAX_APPLICATIONS_PER_DAY": "5",
+        "REQUEST_DELAY_MIN": "2",
+        "REQUEST_DELAY_MAX": "5",
+        "MINIMUM_MATCH_SCORE": "0.6",
+        "DATA_DIR": "/workspace/project/data",
+        "LOGS_DIR": "/workspace/project/logs",
+        "PYTHONPATH": "/workspace/project/src"
+      }
+    }
+  }
+}
